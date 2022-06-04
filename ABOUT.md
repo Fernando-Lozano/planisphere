@@ -1,1 +1,0 @@
-This project will automatically display the starry sky relative to the user's latitude using starwheels made by Dominic Ford.

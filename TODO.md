@@ -1,5 +1,5 @@
 Todo:
-  make virtual env
+  print only pngs for imageMaker(maybe do svgs later)
   make imageMaker work
   get relative numbers for image(print jsObject for now)
   display image on website
