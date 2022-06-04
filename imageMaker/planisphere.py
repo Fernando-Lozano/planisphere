@@ -37,7 +37,7 @@ from starwheel import StarWheel
 
 # Create output directory
 os.system("rm -Rf output")
-os.system("mkdir -p output/planispheres output/planisphere_parts")
+os.system("mkdir -p output/planispheres")
 
 arguments = fetch_command_line_arguments()
 theme = arguments['theme']
@@ -58,33 +58,53 @@ for latitude in list(range(-80, 90, 5)) + [52]:
     southern = latitude < 0
 
     # A dictionary of common substitutions
-    subs = {
-        "dir_parts": "output/planisphere_parts",
-        "dir_out": "output/planispheres",
-        "abs_lat": abs(latitude),
-        "ns": "S" if southern else "N",
-        "lang": language,
-        "lang_short": "" if language == "en" else "_{}".format(language)
-    }
+    # subs = {
+    #     "dir_parts": "output/planisphere_parts",
+    #     "dir_out": "output/planispheres",
+    #     "abs_lat": abs(latitude),
+    #     "ns": "S" if southern else "N",
+    #     "lang": language,
+    #     "lang_short": "" if language == "en" else "_{}".format(language)
+    # }
 
-    settings = {
-        'language': language,
+    # settings = {
+    #     'language': language,
+    #     'latitude': latitude,
+    #     'theme': theme
+    # }
+
+    # Fernando edit render individual parts here. Gather from bottom of scripts
+    # Render the star wheel for the planisphere
+    StarWheel(settings={
         'latitude': latitude,
-        'theme': theme
-    }
+        'language': 'en',
+        'theme': arguments['theme'],
+    }).render_to_file(
+        filename=f"./output/planispheres/starwheel{latitude}",
+        img_format=arguments['img_format'],
+
+    )
+        # Render the holder for the planisphere
+    Holder(settings={
+        'latitude': latitude,
+        'language': 'en'
+    }).render_to_file(
+        filename=f"./output/planispheres/holder{latitude}",
+        img_format=arguments['img_format']
+    )
 
     # Render the various parts of the planisphere
-    StarWheel(settings=settings).render_all_formats(
-        filename="{dir_parts}/starwheel_{abs_lat:02d}{ns}_{lang}".format(**subs)
-    )
+    # StarWheel(settings=settings).render_all_formats(
+    #     filename="{dir_parts}/starwheel_{abs_lat:02d}{ns}_{lang}".format(**subs)
+    # )
 
-    Holder(settings=settings).render_all_formats(
-        filename="{dir_parts}/holder_{abs_lat:02d}{ns}_{lang}".format(**subs)
-    )
+    # Holder(settings=settings).render_all_formats(
+    #     filename="{dir_parts}/holder_{abs_lat:02d}{ns}_{lang}".format(**subs)
+    # )
 
-    AltAzGrid(settings=settings).render_all_formats(
-        filename="{dir_parts}/alt_az_grid_{abs_lat:02d}{ns}_{lang}".format(**subs)
-    )
+    # AltAzGrid(settings=settings).render_all_formats(
+    #     filename="{dir_parts}/alt_az_grid_{abs_lat:02d}{ns}_{lang}".format(**subs)
+    # )
 
     # Copy the PDF versions of the components of this astrolabe into LaTeX's working directory, to produce a
     # PDF file containing all the parts of this astrolabe
@@ -112,4 +132,4 @@ for latitude in list(range(-80, 90, 5)) + [52]:
     #               "{dir_out}/planisphere_{abs_lat:02d}{ns}.pdf".format(**subs))
 
     # Clean up the rubbish that LaTeX leaves behind
-    os.system("cd doc ; rm -f *.aux *.log *.dvi *.ps *.pdf")
+    # os.system("cd doc ; rm -f *.aux *.log *.dvi *.ps *.pdf")
