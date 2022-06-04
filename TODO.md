@@ -1,6 +1,6 @@
 Todo:
-  print only pngs for imageMaker(maybe do svgs later)
-  make imageMaker work
+  add white space to holder
+  comment out text in holder for now
   get relative numbers for image(print jsObject for now)
   display image on website
   Once functioning:
