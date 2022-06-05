@@ -1,12 +1,40 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>planisphere</title>
-</head>
-<body>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Bootstrap demo</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
   
+  <style>
+  </style>
+</head>
+
+<body>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous">
+  </script>
 </body>
+  <div class="container">
+    <div class="row position-relative mt-5 mx-5">
+      <img id="holder" src="./images/holder.png" alt="" class="img-fluid position-relative">
+      <img id="starwheel" src="./images/star_wheel.png" alt="" class="img-fluid position-absolute" style="z-index: -1;">
+    </div>
+  </div>
+  <script>
+    setTimeout(test, 500);
+    function test() {
+      const holder = document.querySelector("#holder");
+      const starWheel = document.querySelector("#starwheel");
+      const holderHeight = holder.offsetHeight;
+      const starwheelHeight = starWheel.offsetHeight;
+      console.log(holderHeight, starwheelHeight);
+      const starwheelCenter = starwheelHeight / 2;
+      const center = holderHeight * 0.529;
+      const offset = center - starwheelCenter;
+      starWheel.style.bottom = `${offset}px`;
+    }
+  </script>
 </html>
