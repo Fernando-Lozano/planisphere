@@ -1,7 +1,0 @@
-version: '3'
-services:
-  python:
-    build: .
-    volumes:
-      - .:/code
-    command: ./main_planisphere.sh --theme default
