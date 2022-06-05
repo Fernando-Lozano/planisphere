@@ -6,4 +6,7 @@ Planisphere.py:
   print english content only
   print pngs only
   moved imageMaker to different location
-  allowed background color to holder.py
+  holder.py:
+    allowed background color
+    removed bottom half
+    moved circle for starwheel up
