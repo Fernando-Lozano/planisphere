@@ -1,6 +1,6 @@
 Todo:
-  add white space to holder
-  comment out text in holder for now
+  add circle to top half of holder
+  remove lower half content of holder
   get relative numbers for image(print jsObject for now)
   display image on website
   Once functioning:
