@@ -1,8 +1,8 @@
 Todo:
   make website functional:
-    find the aspect ratio of holder
-    make canvas with that aspect ratio
-    display holder and wheel in canvas
+    find the aspect ratio of holder: 1322 X 1220, 1:0.9228 done
+    make canvas with that aspect ratio  done
+    display holder and wheel in canvas done
     find out how planisphere is suppose to work
     use current user data and time and location to line up planisphere
     allow for swiping to turn the planisphere
@@ -15,3 +15,5 @@ Todo:
 Idea:
   Right now I have the point where the starwheel needs to center highlighted in green.
   I think I will find the hight of the green circle relative to the hight of that image, and center the starwheel image to that.
+
+  Once it is fully functioning, I think I will have only the window displayed on the webiste and size everything to the starwheel(Much easier aproach for preserving aspect ratios I think).
