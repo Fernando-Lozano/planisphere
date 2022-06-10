@@ -1,0 +1,7 @@
+{
+  "section": {
+    "scope": "javascript,html",
+    "prefix": "com",
+    "body": "$BLOCK_COMMENT_START --------------- $0 --------------- $BLOCK_COMMENT_END"
+  }
+}
