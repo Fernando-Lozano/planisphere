@@ -58,3 +58,14 @@ loadImage("./images/holder.png", holderImg)
     ctx.drawImage(holderImg, x, y + offset, holderImg.width * scale, holderImg.height * scale);    
   });
 });
+
+// get local time
+const date = new Date();
+const hours = date.getHours();
+const minutes = date.getMinutes();
+// get latitude
+navigator.geolocation.getCurrentPosition((position) => {
+  console.log(position.coords.latitude);
+});
+
+// might need to make an async function to await image and latitude

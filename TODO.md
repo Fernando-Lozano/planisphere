@@ -1,10 +1,6 @@
 Todo:
   make website functional:
-    find the aspect ratio of holder: 1322 X 1220, 1:0.9228 done
-    make canvas with that aspect ratio  done
-    display holder and wheel in canvas done
-    find out how planisphere is suppose to work
-    use current user data and time and location to line up planisphere
+    rotate starwheel at intervals relative to time
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
 

@@ -13,6 +13,9 @@ imageMaker:
     removed bottom half
     moved circle for starwheel up
     printed point where starwheel needs to go in percentage relative to holder image
+    extracted clockwheel locations
+  starwheel.py:
+    extracted jan1st in degrees location
 
 planisphere:
   tested basic functionality

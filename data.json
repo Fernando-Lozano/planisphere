@@ -33,5 +33,7 @@
     85,
     52
   ],
-  "ratio": 0.529032258064516
+  "ratio": 0.529032258064516,
+  "degreetoJanFirstNorth": 282.43,
+  "degreeToJanFirstSouth": 77.57
 }
