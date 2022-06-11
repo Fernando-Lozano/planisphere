@@ -1,6 +1,6 @@
 Todo:
   make website functional:
-    rotate starwheel at intervals relative to time
+    fix starwheel date lining up with correc hour
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
     add option to change latitude and display current latitude

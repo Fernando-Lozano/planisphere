@@ -21,9 +21,11 @@ const dpi = window.devicePixelRatio;
 // load images
 const holderImg = new Image();
 const starwheelImg = new Image();
+let latitude;
 let degreestoJanFirst;
+let rotate;
 
-async function init(latitude, ratio, degreestoJanFirst) {
+async function init(latitude, ratio) {
   await loadImage(`./images/holder${latitude}.png`, holderImg);
   await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
   scaleToFit(holderImg);
@@ -57,21 +59,10 @@ fetch("./data.json")
     degreestoJanFirst = data.degreestoJanFirst;
     // get user latitude
     const userLatitude = await getUserLatitude();
-    const latitude = getClosestLatitude(userLatitude, latitudes);
+    latitude = getClosestLatitude(userLatitude, latitudes);
     // initialize with correct images
-    init(latitude, ratio, degreestoJanFirst);
+    init(latitude, ratio);
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
   });
-
-
-
-// get local time
-// const date = new Date();
-// const hours = date.getHours();
-// const minutes = date.getMinutes();
-// get latitude
-// navigator.geolocation.getCurrentPosition((position) => {
-//   console.log(position.coords.latitude);
-// });

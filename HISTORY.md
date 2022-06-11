@@ -22,3 +22,5 @@ planisphere:
   added images into canvas
   added all images
   displaying right images
+  added draw function
+  starwheel lines up pretty close to correct position
