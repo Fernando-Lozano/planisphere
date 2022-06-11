@@ -29,16 +29,16 @@ async function init(latitude) {
   await loadImage(`./images/holder${latitude}.png`, holderImg);
   await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
   scaleToFit(holderImg);
-  const x = holderImg.canvasX;
-  const y = holderImg.canvasY;
   const scale = holderImg.canvasScale;
-  const starwheelCenter = y + holderImg.height * scale * Math.abs(1 - ratio);
   // to make top of starwheel visible
   const offset = holderImg.width * scale / 20;
+  const starwheelCenter = holderImg.canvasY + holderImg.height * scale * Math.abs(1 - ratio);
+  starwheelImg.canvasX = holderImg.canvasX;
+  starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * scale;
+  starwheelImg.canvasScale = scale;
   // load starwheel image
-  ctx.drawImage(starwheelImg, x, starwheelCenter - holderImg.width / 2 * scale + offset, holderImg.width * scale, holderImg.width * scale);
-  ctx.drawImage(holderImg, x, y + offset, holderImg.width * scale, holderImg.height * scale);  
-  console.log(starwheelCenter); 
+  ctx.drawImage(starwheelImg, holderImg.canvasX, starwheelImg.canvasY + offset, holderImg.width * scale, holderImg.width * scale);
+  ctx.drawImage(holderImg, holderImg.canvasX, holderImg.canvasY + offset, holderImg.width * scale, holderImg.height * scale);  
 }
 
 fetch("./data.json")
@@ -53,7 +53,6 @@ fetch("./data.json")
     // get user latitude
     const userLatitude = await getUserLatitude();
     const latitude = getClosestLatitude(userLatitude, latitudes);
-    // const latitude = 50;
     // initialize with correct images
     init(latitude);
   })
