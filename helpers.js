@@ -32,3 +32,14 @@ function loadImage(url, imgObj) {
     imgObj.src = url; // Set source path
   });
 }
+// make function to draw images(should be callable at intervals to update relative to time)
+function draw() {
+  ctx.drawImage(starwheelImg, holderImg.canvasX, starwheelImg.canvasY + holderImg.offset, holderImg.width * holderImg.canvasScale, holderImg.width * holderImg.canvasScale);
+  ctx.drawImage(holderImg, holderImg.canvasX, holderImg.canvasY + holderImg.offset, holderImg.width * holderImg.canvasScale, holderImg.height * holderImg.canvasScale);
+  console.log(starwheelImg.canvasY);
+  
+  // setTimeout(draw(), 5000);
+}
+    // get data to rotate starwheel to the correct position
+  // move the draw image functions below into the function mentioned above
+  // load starwheel image
