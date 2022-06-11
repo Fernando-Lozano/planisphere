@@ -6,7 +6,7 @@ function getUserLatitude() {
   // if geolocation can't get location within 4 seconds, set default to 50
   setTimeout(function() {
     res(50);
-  }, 4000);
+  }, 1000);
   });
 }
 function getClosestLatitude(userLatitude, latitudes) {
@@ -36,25 +36,26 @@ function loadImage(url, imgObj) {
 function getRotation(latitude, degreestoJanFirst) {
   // get local time
   const now = new Date();
-  const hour = now.getHours();
+  let hour = now.getHours();
   // from: https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
   const start = new Date(now.getFullYear(), 0, 0);
   const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
   const oneDay = 1000 * 60 * 60 * 24;
-  const day = Math.floor(diff / oneDay) - 1;
-
-  // get degree to current day of year and time
+  let day = Math.floor(diff / oneDay) - 1;
   const degPerDay = 360 / 365;
   const degPerHour = 360 / 24;
-  let janFirst, currentHourDeg, deg;
+  let janFirst, currentHourDeg, deg, currentDayDeg;
   if (latitude >= 0) { // north of equator
     janFirst = degreestoJanFirst.north;
-    currentHourDeg = 360 - (hour * degPerHour) - 90;
+    hour = 24 - hour;
+    currentHourDeg = (hour * degPerHour + 270) % 360 ;
+    currentDayDeg = (janFirst + degPerDay * day) % 360;
   } else { // south of equator
     janFirst = degreestoJanFirst.south;
-    currentHourDeg = (hour - 6) * degPerHour;
+    currentHourDeg = (hour * degPerHour + 270) % 360;
+    day = 365 - day;
+    currentDayDeg = (janFirst + degPerDay * day) % 360;
   }
-  const currentDayDeg = (janFirst + degPerDay * day) % 360;
   if (currentDayDeg > currentHourDeg) {
     deg = 360 - currentDayDeg + currentHourDeg;
   } else {
@@ -64,7 +65,8 @@ function getRotation(latitude, degreestoJanFirst) {
 }
 // make function to draw images(should be callable at intervals to update relative to time)
 function draw() {
-  // clear canvas at beginning
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
   let rotate = getRotation(latitude, degreestoJanFirst);
   const x = holderImg.canvasX + (holderImg.width * holderImg.canvasScale) / 2;
   const y = starwheelImg.canvasY + holderImg.offset + (holderImg.width * holderImg.canvasScale) / 2;

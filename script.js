@@ -36,14 +36,8 @@ async function init(latitude, ratio) {
   starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * holderImg.canvasScale;
   holderImg.canvasScale;
 
-  // make function to draw images(should be callable at intervals to update relative to time)
   draw();
-  // setInterval(draw, 5000);
-    // get data to rotate starwheel to the correct position
-  // move the draw image functions below into the function mentioned above
-  // load starwheel image
-  // ctx.drawImage(starwheelImg, holderImg.canvasX, starwheelImg.canvasY + offset, holderImg.width * scale, holderImg.width * scale);
-  // ctx.drawImage(holderImg, holderImg.canvasX, holderImg.canvasY + offset, holderImg.width * scale, holderImg.height * scale);  
+  setInterval(draw, 1800000); // every 20 minutes.
 }
 
 fetch("./data.json")
