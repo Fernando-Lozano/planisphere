@@ -66,10 +66,12 @@ fetch("./data.json")
     }
     return response.json();
   })
-  .then(data => {
-    console.log(data);
+  .then(async function(data) {
+    const { latitudes } = data;
     // get user latitude
-    // get closest latitude
+    const userLatitude = await getUserLatitude();
+    const latitude = getClosestLatitude(userLatitude, latitudes);
+    console.log(latitude);
     // get correct images
   })
   .catch(error => {
