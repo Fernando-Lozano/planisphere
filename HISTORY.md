@@ -25,3 +25,4 @@ planisphere:
   added draw function
   starwheel lines up pretty close to correct position
   corrected starwheel alignment
+  planisphere is working

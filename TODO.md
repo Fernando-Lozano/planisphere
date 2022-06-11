@@ -1,6 +1,6 @@
 Todo:
   make website functional:
-    clear canvas in draw
+    choose some basic colors
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
     add option to change latitude and display current latitude
