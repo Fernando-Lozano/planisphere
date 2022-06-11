@@ -1,7 +1,5 @@
 Todo:
   make website functional:
-    grab all the images from output
-    work on canvas element(get it's position and size correct)
     load correct image relative to users latitude
     fix canvas blur (look up .scale in mdn(?))
     display images

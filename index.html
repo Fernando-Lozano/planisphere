@@ -21,22 +21,14 @@
       justify-content: center;
     }
     .container {
-      width: calc(100vh / 0.9228);
+      width: 100vw;
+      max-width: 768px;
       background-color: skyblue;
       display: flex;
       flex-direction: row;
       justify-content: center;
     }
-    @media (max-width: 767.98px) {
-      .parent {
-        flex-direction: column;
-        justify-content: end;
-      }
-      .container {
-        width: 100vw;
-        height: calc(100vw * 0.9228);
-      }
-    }
+
   </style>
   <title>planisphere</title>
 </head>

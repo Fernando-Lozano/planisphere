@@ -44,7 +44,7 @@ function scaleToFit(img){
 
 // load holder image
 const holderImg = new Image();
-loadImage("./images/holder.png", holderImg)
+loadImage("./images/holder52.png", holderImg)
 .then(() => {
   const {scale, x, y} = scaleToFit(holderImg)
   const starwheelCenter = holderImg.height * scale * (1 - ratio);
@@ -52,20 +52,39 @@ loadImage("./images/holder.png", holderImg)
   const offset = holderImg.width * scale / 20;
   // load starwheel image
   const starwheelImg = new Image();
-  loadImage("./images/star_wheel.png", starwheelImg)
+  loadImage("./images/starwheel52.png", starwheelImg)
   .then(() => {
     ctx.drawImage(starwheelImg, x, starwheelCenter - holderImg.width / 2 * scale + offset, holderImg.width * scale, holderImg.width * scale);    
     ctx.drawImage(holderImg, x, y + offset, holderImg.width * scale, holderImg.height * scale);    
   });
 });
 
+fetch("./data.json")
+  .then(response => {
+    if (!response.ok) {
+      throw new Error('Network response was not OK');
+    }
+    return response.json();
+  })
+  .then(data => {
+    console.log(data);
+    // get user latitude
+    // get closest latitude
+    // get correct images
+  })
+  .catch(error => {
+    console.error('There has been a problem with your fetch operation:', error);
+  });
+
+
+
 // get local time
-const date = new Date();
-const hours = date.getHours();
-const minutes = date.getMinutes();
+// const date = new Date();
+// const hours = date.getHours();
+// const minutes = date.getMinutes();
 // get latitude
-navigator.geolocation.getCurrentPosition((position) => {
-  console.log(position.coords.latitude);
-});
+// navigator.geolocation.getCurrentPosition((position) => {
+//   console.log(position.coords.latitude);
+// });
 
 // might need to make an async function to await image and latitude
