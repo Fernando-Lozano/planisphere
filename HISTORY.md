@@ -24,3 +24,4 @@ planisphere:
   displaying right images
   added draw function
   starwheel lines up pretty close to correct position
+  corrected starwheel alignment

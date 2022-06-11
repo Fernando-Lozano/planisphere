@@ -36,8 +36,7 @@ function loadImage(url, imgObj) {
 function getRotation(latitude, degreestoJanFirst) {
   // get local time
   const now = new Date();
-  // const hour = now.getHours();
-  const hour = 6; // temp
+  const hour = now.getHours();
   // from: https://stackoverflow.com/questions/8619879/javascript-calculate-the-day-of-the-year-1-366
   const start = new Date(now.getFullYear(), 0, 0);
   const diff = (now - start) + ((start.getTimezoneOffset() - now.getTimezoneOffset()) * 60 * 1000);
@@ -55,8 +54,7 @@ function getRotation(latitude, degreestoJanFirst) {
     janFirst = degreestoJanFirst.south;
     currentHourDeg = (hour - 6) * degPerHour;
   }
-  console.log(hour, currentHourDeg);
-  const currentDayDeg = (janFirst + degPerDay * day) % 365 + 1; // might not be correct
+  const currentDayDeg = (janFirst + degPerDay * day) % 360;
   if (currentDayDeg > currentHourDeg) {
     deg = 360 - currentDayDeg + currentHourDeg;
   } else {
