@@ -23,7 +23,6 @@ function scaleToFit(img){
     // get the top left position of the image
     img.canvasX = (canvas.width / 2) - (img.width / 2) * img.canvasScale;
     img.canvasY = (canvas.height / 2) - (img.height / 2) * img.canvasScale;
-    // ctx.drawImage(img, x, y, img.width * scale, img.height * scale); 
 }
 function loadImage(url, imgObj) {
   return new Promise((res, rej) => {

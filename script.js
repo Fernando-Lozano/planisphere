@@ -36,6 +36,10 @@ async function init(latitude) {
   starwheelImg.canvasX = holderImg.canvasX;
   starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * scale;
   starwheelImg.canvasScale = scale;
+
+  // make function to draw images(should be callable at intervals to update relative to time)
+    // get data to rotate starwheel to the correct position
+  // move the draw image functions below into the function mentioned above
   // load starwheel image
   ctx.drawImage(starwheelImg, holderImg.canvasX, starwheelImg.canvasY + offset, holderImg.width * scale, holderImg.width * scale);
   ctx.drawImage(holderImg, holderImg.canvasX, holderImg.canvasY + offset, holderImg.width * scale, holderImg.height * scale);  
@@ -70,5 +74,3 @@ fetch("./data.json")
 // navigator.geolocation.getCurrentPosition((position) => {
 //   console.log(position.coords.latitude);
 // });
-
-// might need to make an async function to await image and latitude

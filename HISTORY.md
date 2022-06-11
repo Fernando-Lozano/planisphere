@@ -20,3 +20,5 @@ imageMaker:
 planisphere:
   tested basic functionality
   added images into canvas
+  added all images
+  displaying right images
