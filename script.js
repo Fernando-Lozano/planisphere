@@ -21,43 +21,21 @@ const ratio = 0.529032258064516;
     canvas.setAttribute('height', style.height() * dpi);
 })();
 
-function loadImage(url, imgObj) {
-  return new Promise((res, rej) => {
-    imgObj.addEventListener('load', function() {
-      res();
-    }, false);
-    imgObj.src = url; // Set source path
-  });
-}
-
-// from: https://riptutorial.com/html5-canvas/example/19169/scaling-image-to-fit-or-fill-
-// scales the images to fit into canvas while preserving their aspect ratio
-function scaleToFit(img){
-    // get the scale
-    const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
-    // get the top left position of the image
-    const x = (canvas.width / 2) - (img.width / 2) * scale;
-    const y = (canvas.height / 2) - (img.height / 2) * scale;
-    // ctx.drawImage(img, x, y, img.width * scale, img.height * scale); 
-    return {scale, x, y};   
-}
-
-// load holder image
+// load images
 const holderImg = new Image();
-loadImage("./images/holder52.png", holderImg)
-.then(() => {
-  const {scale, x, y} = scaleToFit(holderImg)
+const starwheelImg = new Image();
+
+async function init(latitude) {
+  await loadImage(`./images/holder${latitude}.png`, holderImg);
+  await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
+  const {scale, x, y} = scaleToFit(holderImg);
   const starwheelCenter = holderImg.height * scale * (1 - ratio);
   // to make top of starwheel visible
   const offset = holderImg.width * scale / 20;
   // load starwheel image
-  const starwheelImg = new Image();
-  loadImage("./images/starwheel52.png", starwheelImg)
-  .then(() => {
-    ctx.drawImage(starwheelImg, x, starwheelCenter - holderImg.width / 2 * scale + offset, holderImg.width * scale, holderImg.width * scale);    
-    ctx.drawImage(holderImg, x, y + offset, holderImg.width * scale, holderImg.height * scale);    
-  });
-});
+  ctx.drawImage(starwheelImg, x, starwheelCenter - holderImg.width / 2 * scale + offset, holderImg.width * scale, holderImg.width * scale);
+  ctx.drawImage(holderImg, x, y + offset, holderImg.width * scale, holderImg.height * scale);    
+}
 
 fetch("./data.json")
   .then(response => {
@@ -71,8 +49,8 @@ fetch("./data.json")
     // get user latitude
     const userLatitude = await getUserLatitude();
     const latitude = getClosestLatitude(userLatitude, latitudes);
-    console.log(latitude);
-    // get correct images
+    // initialize with correct images
+    init(latitude);
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);
