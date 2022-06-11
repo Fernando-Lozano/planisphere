@@ -51,9 +51,9 @@ fetch("./data.json")
   .then(async function(data) {
     const { latitudes } = data;
     // get user latitude
-    // const userLatitude = await getUserLatitude();
-    // const latitude = getClosestLatitude(userLatitude, latitudes);
-    const latitude = 50;
+    const userLatitude = await getUserLatitude();
+    const latitude = getClosestLatitude(userLatitude, latitudes);
+    // const latitude = 50;
     // initialize with correct images
     init(latitude);
   })

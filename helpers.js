@@ -1,8 +1,12 @@
 function getUserLatitude() {
   return new Promise((res) => {
     navigator.geolocation.getCurrentPosition((position) => {
-    res(position.coords.latitude)
+    res(position.coords.latitude);
   });
+  // if geolocation can't get location within 4 seconds, set default to 50
+  setTimeout(function() {
+    res(50);
+  }, 4000);
   });
 }
 function getClosestLatitude(userLatitude, latitudes) {
