@@ -15,12 +15,11 @@ return latitudes.reduce(function(prev, curr) {
 // scales the images to fit into canvas while preserving their aspect ratio
 function scaleToFit(img){
     // get the scale
-    const scale = Math.min(canvas.width / img.width, canvas.height / img.height);
+    img.canvasScale = Math.min(canvas.width / img.width, canvas.height / img.height);
     // get the top left position of the image
-    const x = (canvas.width / 2) - (img.width / 2) * scale;
-    const y = (canvas.height / 2) - (img.height / 2) * scale;
+    img.canvasX = (canvas.width / 2) - (img.width / 2) * img.canvasScale;
+    img.canvasY = (canvas.height / 2) - (img.height / 2) * img.canvasScale;
     // ctx.drawImage(img, x, y, img.width * scale, img.height * scale); 
-    return {scale, x, y};   
 }
 function loadImage(url, imgObj) {
   return new Promise((res, rej) => {

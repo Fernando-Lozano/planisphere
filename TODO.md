@@ -1,8 +1,8 @@
 Todo:
   make website functional:
-    load correct image relative to users latitude
-    fix canvas blur (look up .scale in mdn(?))
-    display images
+    re-factor init function
+    load correct image relative to users latitude (this is slow)
+      try to make more effecient or have user choose their latitude.
     rotate starwheel at intervals relative to time
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
