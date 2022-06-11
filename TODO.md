@@ -1,5 +1,10 @@
 Todo:
   make website functional:
+    grab all the images from output
+    work on canvas element(get it's position and size correct)
+    load correct image relative to users latitude
+    fix canvas blur (look up .scale in mdn(?))
+    display images
     rotate starwheel at intervals relative to time
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
@@ -13,3 +18,5 @@ Idea:
   I think I will find the hight of the green circle relative to the hight of that image, and center the starwheel image to that.
 
   Once it is fully functioning, I think I will have only the window displayed on the webiste and size everything to the starwheel(Much easier aproach for preserving aspect ratios I think).
+
+  add a helpers script to break up the code
