@@ -5,7 +5,7 @@ function getUserLatitude() {
   });
   // if geolocation can't get location within 4 seconds, set default to 50
   setTimeout(function() {
-    res(50);
+    res(52);
   }, 1000);
   });
 }
@@ -19,7 +19,7 @@ return latitudes.reduce(function(prev, curr) {
 // scales the images to fit into canvas while preserving their aspect ratio
 function scaleToFit(img){
     // get the scale
-    img.canvasScale = Math.min(canvas.width / img.width, canvas.height / img.height);
+    img.canvasScale = Math.min(canvas.width / img.width, canvas.height / img.height) * enlarge;
     // get the top left position of the image
     img.canvasX = (canvas.width / 2) - (img.width / 2) * img.canvasScale;
     img.canvasY = (canvas.height / 2) - (img.height / 2) * img.canvasScale;

@@ -24,13 +24,14 @@ const starwheelImg = new Image();
 let latitude;
 let degreestoJanFirst;
 let rotate;
+const enlarge = 1.3; // used to enlarge the viewing window of the holder
 
 async function init(latitude, ratio) {
   await loadImage(`./images/holder${latitude}.png`, holderImg);
   await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
   scaleToFit(holderImg);
   // to make top of starwheel visible
-  holderImg.offset = holderImg.width * holderImg.canvasScale / 20;
+  holderImg.offset = holderImg.width * holderImg.canvasScale / 10;
   const starwheelCenter = holderImg.canvasY + holderImg.height * holderImg.canvasScale * Math.abs(1 - ratio);
   starwheelImg.canvasX = holderImg.canvasX;
   starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * holderImg.canvasScale;

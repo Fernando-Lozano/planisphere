@@ -14,8 +14,11 @@ imageMaker:
     moved circle for starwheel up
     printed point where starwheel needs to go in percentage relative to holder image
     extracted clockwheel locations
+    made big white background
   starwheel.py:
     extracted jan1st in degrees location
+    removed month ring from starwheel
+  choose colors
 
 planisphere:
   tested basic functionality
@@ -26,3 +29,4 @@ planisphere:
   starwheel lines up pretty close to correct position
   corrected starwheel alignment
   planisphere is working
+  made viewing window bigger

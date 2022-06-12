@@ -1,14 +1,11 @@
 Todo:
   make website functional:
-    choose some basic colors
     allow for swiping to turn the planisphere
     after inactivity re-align the planisphere
     add option to change latitude and display current latitude
+    fix on screen change
 
-  remove green circle in images
-  find desired color scheme
   output all latitudes of data
-  revamp planisphere so that the viewing window is fully zoomed in.
 
   clean up code
 
