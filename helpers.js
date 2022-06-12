@@ -5,7 +5,7 @@ function getUserLatitude() {
   });
   // if geolocation can't get location within 4 seconds, set default to 50
   setTimeout(function() {
-    res(52);
+    res(50);
   }, 1000);
   });
 }

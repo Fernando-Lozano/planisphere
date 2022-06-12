@@ -30,3 +30,4 @@ planisphere:
   corrected starwheel alignment
   planisphere is working
   made viewing window bigger
+  added color designs
