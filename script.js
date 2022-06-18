@@ -18,15 +18,13 @@ const dpi = window.devicePixelRatio;
     canvas.setAttribute('height', style.height() * dpi);
 })();
 
-// load images
-const holderImg = new Image();
-const starwheelImg = new Image();
-let latitude;
-let degreestoJanFirst;
-let rotate;
+let holderImg, starwheelImg, degreestoJanFirst, rotate, ratio;
+let latitude = 50; // the latitude that the page initially displays
 const enlarge = 1.3; // used to enlarge the viewing window of the holder
 
-async function init(latitude, ratio) {
+async function main(latitude) {
+  holderImg = new Image();
+  starwheelImg = new Image();
   await loadImage(`./images/holder${latitude}.png`, holderImg);
   await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
   scaleToFit(holderImg);
@@ -36,9 +34,6 @@ async function init(latitude, ratio) {
   starwheelImg.canvasX = holderImg.canvasX;
   starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * holderImg.canvasScale;
   holderImg.canvasScale;
-
-  draw();
-  setInterval(draw, 1800000); // every 20 minutes.
 }
 
 fetch("./data.json")
@@ -52,11 +47,10 @@ fetch("./data.json")
     const { latitudes } = data;
     ratio = data.ratio;
     degreestoJanFirst = data.degreestoJanFirst;
-    // get user latitude
-    const userLatitude = await getUserLatitude();
-    latitude = getClosestLatitude(userLatitude, latitudes);
-    // initialize with correct images
-    init(latitude, ratio);
+    addSelectInput(latitudes);
+    await main(latitude);
+    draw();
+    setInterval(draw, 1800000); // draw every 20 minutes--temporary
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);

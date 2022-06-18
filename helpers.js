@@ -1,19 +1,7 @@
-function getUserLatitude() {
-  return new Promise((res) => {
-    navigator.geolocation.getCurrentPosition((position) => {
-    res(position.coords.latitude);
-  });
-  // if geolocation can't get location within 4 seconds, set default to 50
-  setTimeout(function() {
-    res(50);
-  }, 1000);
-  });
-}
-function getClosestLatitude(userLatitude, latitudes) {
-  // from: https://stackoverflow.com/questions/8584902/get-the-closest-number-out-of-an-array
-return latitudes.reduce(function(prev, curr) {
-  return (Math.abs(curr - userLatitude) < Math.abs(prev - userLatitude) ? curr : prev);
-});
+function addSelectInput(latitudes) {
+  console.log("hey");
+
+  // add event listener
 }
 // from: https://riptutorial.com/html5-canvas/example/19169/scaling-image-to-fit-or-fill-
 // scales the images to fit into canvas while preserving their aspect ratio
