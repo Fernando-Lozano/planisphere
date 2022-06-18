@@ -24,18 +24,43 @@
     .container {
       width: 100vw;
       max-width: 768px;
-      display: flex;
-      flex-direction: row;
-      justify-content: center;
+      position: relative;
+      /* display: flex; */
+      /* flex-direction: row; */
+      /* justify-content: center; */
     }
-
+    #planisphereContainer {
+      width: 100%;
+      height: 100vh;
+    }
+    select {
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 24px;
+      background-color: #7C6889;
+      color: #191926;
+      border-radius: 6px;
+      border: none;
+      outline: none;
+    }
   </style>
   <title>planisphere</title>
 </head>
 <body>
   <div class="parent">
     <!-- planisphere container -->
-    <canvas class="container" id="planisphereContainer"></canvas>
+    <div class="container">
+      <canvas id="planisphereContainer"></canvas>
+      <select id="year">
+        <option value="2010">2010</option>
+        <option value="2011">2011</option>
+        <option value="2012">2012</option>
+        <option value="2013">2013</option>
+        <option value="2014">2014</option>
+        <option value="2015">2015</option>
+      </select>
+    </div>
   </div>
   <script src="./helpers.js"></script>
   <script src="./script.js"></script>
