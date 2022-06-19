@@ -1,16 +1,33 @@
 function addSelectInput(latitudes) {
-  console.log("hey");
+  const select = document.createElement("select");
+  latitudes.forEach(latitude => {
+    const option = document.createElement("option");
+    option.setAttribute("value", latitude);
+    option.innerHTML = `Latitude ${latitude}`;
+    select.appendChild(option);
+  });
+  select.value = latitude;
+  document.querySelector(".container").appendChild(select);
 
-  // add event listener
+  select.addEventListener("change", function(e) {
+    main(e.target.value);
+  });
 }
 // from: https://riptutorial.com/html5-canvas/example/19169/scaling-image-to-fit-or-fill-
 // scales the images to fit into canvas while preserving their aspect ratio
-function scaleToFit(img){
-    // get the scale
-    img.canvasScale = Math.min(canvas.width / img.width, canvas.height / img.height) * enlarge;
-    // get the top left position of the image
-    img.canvasX = (canvas.width / 2) - (img.width / 2) * img.canvasScale;
-    img.canvasY = (canvas.height / 2) - (img.height / 2) * img.canvasScale;
+function scaleToFit(){
+  // get the scale
+  holderImg.canvasScale = Math.min(canvas.width / holderImg.width, canvas.height / holderImg.height) * enlarge;
+  // get the top left position of the image
+  holderImg.canvasX = (canvas.width / 2) - (holderImg.width / 2) * holderImg.canvasScale;
+  holderImg.canvasY = (canvas.height / 2) - (holderImg.height / 2) * holderImg.canvasScale;
+
+    // to make top of starwheel visible
+  holderImg.offset = holderImg.width * holderImg.canvasScale / 10;
+  const starwheelCenter = holderImg.canvasY + holderImg.height * holderImg.canvasScale * Math.abs(1 - ratio);
+  starwheelImg.canvasX = holderImg.canvasX;
+  starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * holderImg.canvasScale;
+  holderImg.canvasScale;
 }
 function loadImage(url, imgObj) {
   return new Promise((res, rej) => {
@@ -51,7 +68,6 @@ function getRotation(latitude, degreestoJanFirst) {
   }
   return deg;
 }
-// make function to draw images(should be callable at intervals to update relative to time)
 function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
@@ -65,13 +81,10 @@ function draw() {
   // rotate starwheel
   ctx.drawImage(starwheelImg, holderImg.canvasX, starwheelImg.canvasY + holderImg.offset, holderImg.width * holderImg.canvasScale, holderImg.width * holderImg.canvasScale);
 
-    // Matrix transformation
+  // Matrix transformation
   ctx.translate(x, y);
   ctx.rotate(-rotate * Math.PI / 180);
   ctx.translate(-x, -y);
 
   ctx.drawImage(holderImg, holderImg.canvasX, holderImg.canvasY + holderImg.offset, holderImg.width * holderImg.canvasScale, holderImg.height * holderImg.canvasScale);  
 }
-    // get data to rotate starwheel to the correct position
-  // move the draw image functions below into the function mentioned above
-  // load starwheel image

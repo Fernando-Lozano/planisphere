@@ -1,9 +1,12 @@
 const canvas = document.querySelector("#planisphereContainer");
 const ctx = canvas.getContext("2d");
 const dpi = window.devicePixelRatio;
+let holderImg, starwheelImg, degreestoJanFirst, rotate, ratio;
+const latitude = 50; // the latitude that the page initially displays
+const enlarge = 1.3; // used to enlarge the viewing window of the holder
 
 // fixes canvas blur
-(function fix_dpi() {
+function fix_dpi() {
     //create a style object that returns width and height
     let style = {
         height() {
@@ -16,24 +19,16 @@ const dpi = window.devicePixelRatio;
     //set the correct attributes for a crystal clear image!
     canvas.setAttribute('width', style.width() * dpi);
     canvas.setAttribute('height', style.height() * dpi);
-})();
-
-let holderImg, starwheelImg, degreestoJanFirst, rotate, ratio;
-let latitude = 50; // the latitude that the page initially displays
-const enlarge = 1.3; // used to enlarge the viewing window of the holder
+};
+fix_dpi();
 
 async function main(latitude) {
   holderImg = new Image();
   starwheelImg = new Image();
   await loadImage(`./images/holder${latitude}.png`, holderImg);
   await loadImage(`./images/starwheel${latitude}.png`, starwheelImg);
-  scaleToFit(holderImg);
-  // to make top of starwheel visible
-  holderImg.offset = holderImg.width * holderImg.canvasScale / 10;
-  const starwheelCenter = holderImg.canvasY + holderImg.height * holderImg.canvasScale * Math.abs(1 - ratio);
-  starwheelImg.canvasX = holderImg.canvasX;
-  starwheelImg.canvasY = starwheelCenter - holderImg.width / 2 * holderImg.canvasScale;
-  holderImg.canvasScale;
+  scaleToFit();
+  draw();
 }
 
 fetch("./data.json")
@@ -49,8 +44,14 @@ fetch("./data.json")
     degreestoJanFirst = data.degreestoJanFirst;
     addSelectInput(latitudes);
     await main(latitude);
-    draw();
-    setInterval(draw, 1800000); // draw every 20 minutes--temporary
+    setInterval(draw, 600000); // draw every minute
+
+    // fixes image when window is resized
+    window.addEventListener("resize", function() {
+      fix_dpi();
+      scaleToFit();
+      draw();
+    });
   })
   .catch(error => {
     console.error('There has been a problem with your fetch operation:', error);

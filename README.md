@@ -1,8 +1,2 @@
-#About
-This project will automatically display the starry sky relative to the user's latitude using starwheels made by Dominic Ford.
-
-#To run python scripts:
-activate virtualenv with:
-  source ~/projects/environments/planisphere/bin/activate
-deactivate virtualenv with:
-  deactivate
+# About
+This project displays the current starry sky relative to the selected latitude using planispheres made by Dominic Ford. See https://in-the-sky.org/planisphere/index.php for more information.
